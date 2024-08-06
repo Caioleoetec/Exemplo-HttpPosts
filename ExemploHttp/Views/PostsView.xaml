@@ -5,7 +5,9 @@
              Title="PostsView">
     <VerticalStackLayout>
         <ScrollView>
-            <CollectionView>
+            <Button
+                Text="Exibir posts"/>
+            <CollectionView ItemsSource="{Binding Posts}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <VerticalStackLayout>
