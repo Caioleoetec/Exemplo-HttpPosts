@@ -11,23 +11,22 @@ using System.Windows.Input;
 
 namespace ExemploHttp.ViewModels
 {
-    public partial class PostsViewModel:ObservableObject
+    public partial class PhotosViewModel:ObservableObject
     {
         [ObservableProperty]
-        private ObservableCollection<Post> posts;
+        private ObservableCollection<Photo> photos;
 
-        public ICommand getPostsCommand { get; }
+        public ICommand getPhotosCommand { get; }
 
-        public PostsViewModel()
-        {
-            getPostsCommand = new Command(getPosts);
-        }
-
-        public async void getPosts()
+        private async void getPhotos()
         {
             RestService restService = new RestService();
-            Posts = await restService.getPostAsync();
+            Photos = await restService.getPhotosAsync();
         }
 
+        public PhotosViewModel() 
+        {
+            getPhotosCommand = new Command(getPhotos);
+        }
     }
 }

@@ -15,6 +15,8 @@ namespace ExemploHttp.Services
 		private HttpClient client;
         private Post post;
         private ObservableCollection<Post> posts;
+        private ObservableCollection<Photo> photos;
+
 		private JsonSerializerOptions serializerOptions;
         public RestService()
         {
@@ -46,6 +48,26 @@ namespace ExemploHttp.Services
 
 			return posts;
 		}
+        public async Task<ObservableCollection<Photo>> getPhotosAsync()
+        {
+
+            Uri uri = new Uri("https://jsonplaceholder.typicode.com/photos");
+            try
+            {
+                HttpResponseMessage response = await client.GetAsync(uri);
+                if (response.IsSuccessStatusCode)
+                {
+                    string content = await response.Content.ReadAsStringAsync();
+                    photos = JsonSerializer.Deserialize<ObservableCollection<Photo>>(content, serializerOptions);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(@"\tERROR {0}", ex.Message);
+            }
+
+            return photos;
+        }
 
 
     }
