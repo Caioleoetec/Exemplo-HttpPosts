@@ -21,6 +21,8 @@
 
                             <Image
                                 Source="{Binding Url}"/>
+                            <Label
+                                Text="{Binding ThumbnailUrl}"/>
                             <Image
                                 Source="{Binding ThumbnailUrl}"/>
                             <Button
